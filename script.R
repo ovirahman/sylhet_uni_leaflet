@@ -26,7 +26,7 @@ labelText <- function(Name, Type, Established){
 #note text
 note <- tags$div(
     HTML('<b>Public, Private Universities and Medical Colleges in Sylhet</b> <br>
-         Developed By: <a href = "https://www.linkedin.com/in/ovirahman">Musaddiqur Rahnan Ovi </a> <br>
+         Developed By: <a href = "https://www.linkedin.com/in/ovirahman">Musaddiqur Rahman Ovi </a> <br>
          m.ovirahman2@gmail.com  <br>
          Sources: Google, Wikipedia' )
 )  
@@ -35,13 +35,13 @@ note <- tags$div(
 #creating the leaflet map object
 map <- leaflet() %>% 
     addProviderTiles("CartoDB") %>% 
-    addCircleMarkers(data = public, radius = 8, label = ~Name,
+    addCircleMarkers(data = public, radius = 12, label = ~Name,
                      popup = ~labelText(Name, Type, Established),
                      color = ~pal(Type), group = "Public") %>% 
-    addCircleMarkers(data = private, radius = 8, label = ~Name,
+    addCircleMarkers(data = private, radius = 12, label = ~Name,
                      popup = ~labelText(Name, Type, Established),
                      color = ~pal(Type), group = "Private") %>% 
-    addCircleMarkers(data = medical, radius = 8, label = ~Name,
+    addCircleMarkers(data = medical, radius = 12, label = ~Name,
                      popup = ~labelText(Name, Type, Established),
                      color = ~pal(Type), group = "Medical College") %>% 
     addLegend(pal = pal, 
@@ -68,7 +68,7 @@ map <-leaflet() %>%
 
 for(i in c("Public", "Private", "Medical College")){
     map <-  map %>% 
-        addCircleMarkers(data = filter(sylhet, Type == i), radius = 8, label = ~Name,
+        addCircleMarkers(data = filter(sylhet, Type == i), radius = 12, label = ~Name,
                          popup = ~paste0("<b>",Name,"</b>", "<br/>", Type, "<br/>", "Established:", Established),
                          color = ~pal(Type), group = i)
 }
