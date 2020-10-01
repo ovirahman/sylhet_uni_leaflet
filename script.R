@@ -9,7 +9,7 @@ sylhet <- read.csv("sylhet_uni.csv")
 names(sylhet) <- c("Name","Type", "lat", "lon", "Established")
 
 
-#Defining Collor Pallete for markers
+#Defining Color Pallete for markers
 pal <- colorFactor(palette = c("red", "blue", "#9b4a11"), 
                    levels = c("Public", "Private", "Medical College"))
 
@@ -18,7 +18,7 @@ public <- filter(sylhet, Type == "Public")
 private <- filter(sylhet, Type == "Private") 
 medical <- filter(sylhet, Type == "Medical College")
 
-
+#funcion for generating label text
 labelText <- function(Name, Type, Established){ 
     paste0("<b>",Name,"</b>", "<br/>","Type: ", Type, "<br/>", "Established:", Established)
 }
@@ -26,11 +26,13 @@ labelText <- function(Name, Type, Established){
 #note text
 note <- tags$div(
     HTML('<b>Public, Private Universities and Medical Colleges in Sylhet</b> <br>
-         Developed By: Musaddiqur Rahnan Ovi <br>
+         Developed By: <a href = "https://www.linkedin.com/in/ovirahman">Musaddiqur Rahnan Ovi </a> <br>
          m.ovirahman2@gmail.com  <br>
          Sources: Google, Wikipedia' )
 )  
 
+
+#creating the leaflet map object
 map <- leaflet() %>% 
     addProviderTiles("CartoDB") %>% 
     addCircleMarkers(data = public, radius = 8, label = ~Name,
@@ -48,6 +50,7 @@ map <- leaflet() %>%
     addControl(note, position = "bottomleft")
 
 
+#plotting the map
 map
 
 
@@ -94,10 +97,3 @@ map
 
 ##############################
 
-
-
-
-
-map<- map
-
-map
